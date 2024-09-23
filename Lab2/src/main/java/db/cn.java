@@ -5,6 +5,7 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  *
@@ -16,6 +17,7 @@ public class cn {
     public cn() throws ClassNotFoundException{
         try{
             Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab2", "root", "");
         }catch(Exception e){
             System.err.println("Error" + e);
         }
