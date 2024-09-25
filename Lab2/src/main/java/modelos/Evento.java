@@ -4,24 +4,24 @@
  */
 package modelos;
 
+import java.sql.Date;
+
 /**
  *
  * @author steve
  */
 public class Evento {
     private int idEvento;
-    private String nombreLugar;
-    private String direccion;
-    private int capacidad;
-
-    public Evento(int idEvento, String nombreLugar, String direccion, int capacidad) {
-        this.idEvento = idEvento;
-        this.nombreLugar = nombreLugar;
-        this.direccion = direccion;
-        this.capacidad = capacidad;
-    }
+    private Date fechaEvento;
+    private int lugarId;
 
     public Evento() {
+    }
+
+    public Evento(int idEvento, Date fechaEvento, int lugarId) {
+        this.idEvento = idEvento;
+        this.fechaEvento = fechaEvento;
+        this.lugarId = lugarId;
     }
 
     public int getIdEvento() {
@@ -32,29 +32,25 @@ public class Evento {
         this.idEvento = idEvento;
     }
 
-    public String getNombreLugar() {
-        return nombreLugar;
+    public Date getFechaEvento() {
+        return fechaEvento;
     }
 
-    public void setNombreLugar(String nombreLugar) {
-        this.nombreLugar = nombreLugar;
+    public void setFechaEvento(Date fechaEvento) {
+        this.fechaEvento = fechaEvento;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public int getLugarId() {
+        return lugarId;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setLugarId(int lugarId) {
+        this.lugarId = lugarId;
     }
 
-    public int getCapacidad() {
-        return capacidad;
-    }
+   
 
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
+    
     
     
 }

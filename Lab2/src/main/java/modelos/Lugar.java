@@ -12,16 +12,18 @@ import java.sql.Date;
  */
 public class Lugar {
     private int idLugar;
-    private Date fechaEvento;
-    private int lugarId;
-
-    public Lugar(int idLugar, Date fechaEvento, int lugarId) {
-        this.idLugar = idLugar;
-        this.fechaEvento = fechaEvento;
-        this.lugarId = lugarId;
-    }
+     private String nombreLugar;
+    private String direccion;
+    private int capacidad;
 
     public Lugar() {
+    }
+
+    public Lugar(int idLugar, String nombreLugar, String direccion, int capacidad) {
+        this.idLugar = idLugar;
+        this.nombreLugar = nombreLugar;
+        this.direccion = direccion;
+        this.capacidad = capacidad;
     }
 
     public int getIdLugar() {
@@ -32,21 +34,31 @@ public class Lugar {
         this.idLugar = idLugar;
     }
 
-    public Date getFechaEvento() {
-        return fechaEvento;
+    public String getNombreLugar() {
+        return nombreLugar;
     }
 
-    public void setFechaEvento(Date fechaEvento) {
-        this.fechaEvento = fechaEvento;
+    public void setNombreLugar(String nombreLugar) {
+        this.nombreLugar = nombreLugar;
     }
 
-    public int getLugarId() {
-        return lugarId;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setLugarId(int lugarId) {
-        this.lugarId = lugarId;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+   
     
     
 }
