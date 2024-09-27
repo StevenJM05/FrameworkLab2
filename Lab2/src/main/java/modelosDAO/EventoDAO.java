@@ -30,7 +30,7 @@ public class EventoDAO {
     public List listar(){
         ArrayList<Evento> eventos = new ArrayList<>();
         
-        String sql = "select e.ID_Evento, e.Fecha_Evento, e.Lugar_ID l.Nombre_Lugar FROM eventos e inner join lugares l ON e.Lugar_ID = l.ID_Lugar";
+        String sql = "SELECT e.ID_Evento, e.Fecha_Evento, e.Lugar_ID, l.Nombre_Lugar FROM Eventos e INNER JOIN Lugares l ON e.Lugar_ID = l.ID_Lugar;";
         try {
             con = CN.getCon();
             ps = con.prepareStatement(sql);

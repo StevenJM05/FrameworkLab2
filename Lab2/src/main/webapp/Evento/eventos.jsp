@@ -56,16 +56,16 @@
                                     <c:forEach items="${eventos}" var="eventos">
                                         <tr>
                                             <td>
-                                                <c:out value="${eventos.ID_Evento}"></c:out>
+                                                <c:out value="${eventos.idEvento}"></c:out>
                                             </td>
                                             <td>
-                                                <c:out value="${eventos.Fecha_Evento}"></c:out>
+                                                <c:out value="${eventos.fechaEvento}"></c:out>
                                             </td>
                                             <td>
-                                                <c:out value="${eventos.Lugar_ID}"></c:out>
+                                                <c:out value="${eventos.lugarId}"></c:out>
                                             </td>
                                             <td>
-                                                <c:out value="${eventos.Nombre_Lugar}"></c:out>
+                                                <c:out value="${eventos.nombreLugar}"></c:out>
                                             </td>
                                         </tr>
                                         
