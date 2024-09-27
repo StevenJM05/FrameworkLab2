@@ -54,5 +54,60 @@ public class LugaresDAO {
         return lista;
     };
     
+    public boolean agregar(Lugares lugares) {
+    String sql = "insert into Lugares(Nombre_Lugar, Direccion, Capacidad) values(?, ?, ?)";
+    try {
+        con = CN.getCon();
+        ps = con.prepareStatement(sql);
+        ps.setString(1, lugares.getNombreLugar()); 
+        ps.setString(2, lugares.getDireccion());   
+        ps.setInt(3, lugares.getCapacidad());      
+        int filaAfectadas = ps.executeUpdate();
+        return filaAfectadas > 0;
+        
+    } catch (Exception e) {
+        e.printStackTrace(); // Manejo básico de excepciones
+        return false;
+    }
+    finally {}
+}
+
+    public boolean actualizar(Lugares lugares){
+        String sql = "update Lugares set Nombre_Lugar=?, Direccion=?, Capacidad=? where ID_Lugar=?";
+    try {
+        con = CN.getCon();
+        ps = con.prepareStatement(sql);
+        ps.setString(1, lugares.getNombreLugar()); 
+        ps.setString(2, lugares.getDireccion());   
+        ps.setInt(3, lugares.getCapacidad()); 
+        ps.setInt(4, lugares.getIdLugar()); 
+        
+        int filaAfectadas = ps.executeUpdate();
+        return filaAfectadas > 0;
+        
+    } catch (Exception e) {
+        e.printStackTrace(); // Manejo básico de excepciones
+        return false;
+    }
+    finally {}
+    }
+    
+    public boolean eliminar(Lugares lugares){
+    try {
+        String sql = "delete from Lugares where ID_Lugar=?";
+        con = CN.getCon();
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, lugares.getIdLugar());
+        int filaAfectadas = ps.executeUpdate();
+        return filaAfectadas > 0;
+    }
+    catch(Exception e){
+        e.printStackTrace(); 
+        return false;
+    }
+    finally{}
+    }
+    
+    
     
 }

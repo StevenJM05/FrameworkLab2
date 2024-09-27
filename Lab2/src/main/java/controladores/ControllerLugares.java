@@ -93,6 +93,7 @@ public class ControllerLugares extends HttpServlet {
         processRequest(request, response);
     }
 
+    
     /**
      * Returns a short description of the servlet.
      *
