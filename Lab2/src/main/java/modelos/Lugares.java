@@ -4,22 +4,21 @@
  */
 package modelos;
 
-import java.sql.Date;
-
 /**
  *
- * @author steve
+ * @author MINED
  */
-public class Lugar {
+public class Lugares {
+
     private int idLugar;
-     private String nombreLugar;
+    private String nombreLugar;
     private String direccion;
     private int capacidad;
 
-    public Lugar() {
+    public Lugares() {
     }
 
-    public Lugar(int idLugar, String nombreLugar, String direccion, int capacidad) {
+    public Lugares(int idLugar, String nombreLugar, String direccion, int capacidad) {
         this.idLugar = idLugar;
         this.nombreLugar = nombreLugar;
         this.direccion = direccion;
@@ -58,7 +57,4 @@ public class Lugar {
         this.capacidad = capacidad;
     }
 
-   
-    
-    
 }

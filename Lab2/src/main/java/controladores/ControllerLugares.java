@@ -4,6 +4,7 @@
  */
 package controladores;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,13 +12,18 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelos.Lugares;
+import modelosDAO.LugaresDAO;
 
 /**
  *
  * @author MINED
  */
-@WebServlet(name = "ControllerLugar", urlPatterns = {"/ControllerLugar"})
-public class ControllerLugar extends HttpServlet {
+@WebServlet(name = "ControllerLugares", urlPatterns = {"/ControllerLugares"})
+public class ControllerLugares extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +42,10 @@ public class ControllerLugar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerLugar</title>");
+            out.println("<title>Servlet ControllerLugares</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControllerLugar at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControllerLugares at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,8 +64,19 @@ public class ControllerLugar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        RequestDispatcher dispatcher = null;
+        try {
+            LugaresDAO lugaresDAO = new LugaresDAO();
+            List<Lugares> consulta = lugaresDAO.Listar();
+            request.setAttribute("consulta", consulta);
+            dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
+            dispatcher.forward(request, response);
+        }
+       catch (ClassNotFoundException ex) {
+            Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        processRequest(request, response);
+        
     }
 
     /**
