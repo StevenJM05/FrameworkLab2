@@ -14,15 +14,27 @@ public class Evento {
     private int idEvento;
     private Date fechaEvento;
     private int lugarId;
+    private String nombreLugar;
+
+    public Evento(int idEvento, Date fechaEvento, int lugarId, String nombreLugar) {
+        this.idEvento = idEvento;
+        this.fechaEvento = fechaEvento;
+        this.lugarId = lugarId;
+        this.nombreLugar = nombreLugar;
+    }
 
     public Evento() {
     }
 
-    public Evento(int idEvento, Date fechaEvento, int lugarId) {
-        this.idEvento = idEvento;
-        this.fechaEvento = fechaEvento;
-        this.lugarId = lugarId;
+    public String getNombreLugar() {
+        return nombreLugar;
     }
+
+    public void setNombreLugar(String nombreLugar) {
+        this.nombreLugar = nombreLugar;
+    }
+
+    
 
     public int getIdEvento() {
         return idEvento;

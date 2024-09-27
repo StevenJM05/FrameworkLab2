@@ -42,6 +42,7 @@ public class EventoDAO {
                 evento.setIdEvento(rs.getInt("ID_Evento"));
                 evento.setFechaEvento(rs.getDate("Fecha_Evento"));
                 evento.setLugarId(rs.getInt("Lugar_ID"));
+                evento.setNombreLugar(rs.getString("Nombre_Lugar"));
                 eventos.add(evento);
             }
         } catch (Exception e) {
