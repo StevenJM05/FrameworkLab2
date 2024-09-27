@@ -32,6 +32,8 @@ public class EventoDAO {
         
 <<<<<<< Updated upstream
         String sql = "SELECT e.ID_Evento, e.Fecha_Evento, e.Lugar_ID, l.Nombre_Lugar FROM Eventos e INNER JOIN Lugares l ON e.Lugar_ID = l.ID_Lugar;";
+=======
+       
         try {
             con = CN.getCon();
             ps = con.prepareStatement(sql);
