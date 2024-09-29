@@ -1,218 +1,286 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Title</title>
-</head>
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        max-width: 800px;
-        margin: 30px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h3 {
-        margin-bottom: 15px;
-        color: #333;
-    }
-
-    h3 span {
-        color: #666;
-    }
-
-    .form-section, .table-section {
-        margin-bottom: 30px;
-    }
-
-    .input-group {
-        margin-bottom: 15px;
-    }
-
-    .input-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-
-    .input-group input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .btn-agregar, .btn-eliminar {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .btn-agregar:hover, .btn-eliminar:hover {
-        background-color: #0056b3;
-    }
-
-    .table-section h3 {
-        background-color: #e9f2ff;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 15px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 15px;
-    }
-
-    table thead {
-        background-color: #333;
-        color: #fff;
-    }
-
-    table th, table td {
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #ccc;
-    }
-
-    table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .btn-edit, .btn-delete {
-        background-color: #fff;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
-    }
-
-    .btn-edit:hover {
-        color: #007bff;
-    }
-
-    .btn-delete:hover {
-        color: #dc3545;
-    }
-
-    .btn-eliminar {
-        background-color: #dc3545;
-    }
-
-    .btn-eliminar:hover {
-        background-color: #c82333;
-    }
-
-</style>
-<body>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">EXAMEN FRAMEWORKS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
-                aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css" />
+    <title>Lugares</title>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Laboratorio Framework 2</h2>
+      <ul>
+        <li class="active">
+          <a href="index.html"><i class='bx bxs-home icon'></i> Inicio</a>
+        </li>
+        <li>
+          <a href="eventos.html"><i class='bx bx-category-alt icon'></i> Eventos</a>
+        </li>
+        <li>
+          <a href="lugares.html"><i class='bx bxs-flag-alt icon'></i>Lugares</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="table-container">
+        <div class="header">
+          <h2>Lugares</h2>
+          <div class="buttons">
+            <button class="filter-button">Filtros</button>
+            <button
+              class="new-ticket-button"
+              data-bs-toggle="modal"
+              data-bs-target="#agregarLugar"
+            >
+              + Nuevo Lugar
             </button>
-            <div class="collapse navbar-collapse" id="navbarID">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.html">Volver al index</a>
-                    <a class="nav-link active" aria-current="page" href="ControllerLugares">Ir a lugares</a>
-                    <a class="nav-link active" aria-current="page" href="ControllerEvento">Ir a eventos</a>
-                    
-                </div>
-            </div>
+          </div>
         </div>
-    </nav>
-</header>
-<div class="container">
-    
-
-    
-
-    <div class="form-section">
-        <h3>Información requerida: <span>Para registrar una nueva persona</span></h3>
-        <form action="ControllerPersona" method="post" >
-
-            <div class="input-group">
-                <label>Nombre Lugar</label>
-                <input type="text" name="nombre" placeholder="Ingrese el nombre">
-            </div>
-            <div class="input-group">
-                <label>Dirección</label>
-                <input type="text" name="direccion" placeholder="Ingrese la direccion">
-            </div>
-            <div class="input-group">
-                <label>Capacidad</label>
-                <input type="number" name="capacidad" placeholder="Ingrese la capacidad">
-            </div>
-            <button type="submit" name="action" value="agregar" class="btn-agregar">Agregar registro</button>
-        </form>
-
-    </div>
-
-    <div class="table-section">
-        <h3>Consulta General de personas</h3>
         <table>
-            <thead>
+          <thead>
             <tr>
-                <th>ID</th>
-                <th>DUI</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Acciones</th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Capacidad</th>
+              <th>Acciones</th>
             </tr>
-            </thead>
-            <tbody>
-
-
-                <c:forEach items = "${consulta}" var = "lugares">
+          </thead>
+          <tbody>
             <tr>
-                <td >
-                    ${lugares.idLugar}  
-                </td>
-                
-                <td>${lugares.nombreLugar}</td>
-                <td>${lugares.direccion}</td>
-                <td>${lugares.capacidad}</td>
-                <td>
-                    <form action="ControllerPersona" method="post">
-                        <input type="hidden" name="id" value="">
-                        <button class="btn-edit" name="action" value="actualizar">✏</button>
-                    </form>
-
-                </td>
+              <td>1</td>
+              <td>Salón Chalchuapa</td>
+              <td>Calle Real, Chalchuapa</td>
+              <td>500</td>
+              <td>
+                <button
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ActualizarLugar"
+                >
+                  <i class="fa-solid fa-pen-to-square mx-1"></i>
+                </button>
+                <button
+                  class="btn btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#eliminarLugar"
+                >
+                  <i class="fa-regular fa-circle-xmark mx-1"></i>
+                </button>
+              </td>
             </tr>
-            </c:forEach>
-          
-
+          </tbody>
         </table>
-        <form action="ControllerPersona" method="get">
-            <input type="hidden" name="id" value="">
-            <button type="submit" name="action" value="eliminar" class="btn-eliminar">Eliminar registro</button>
-        </form> 
-
+      </div>
     </div>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-</body>
+
+    <!-- Modal Agregar Lugar -->
+    <div
+      class="modal fade"
+      id="agregarLugar"
+      tabindex="-1"
+      aria-labelledby="agregarLugar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background-color: blueviolet; color: aliceblue"
+          >
+            <h5 class="modal-title" id="exampleModalLabel">Agregar Lugar</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  name="nombre"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="direccion"
+                  name="direccion"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="capacidad" class="form-label">Capacidad:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="capacidad"
+                  name="capacidad"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Eliminar Lugar -->
+    <div
+      class="modal fade"
+      id="eliminarLugar"
+      tabindex="-1"
+      aria-labelledby="eliminarLugar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background-color: blueviolet; color: aliceblue"
+          >
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Lugar</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label class="form-label">¿Desea eliminar el lugar?</label>
+          </div>
+          <div class="modal-footer">
+            <form>
+              <button class="btn btn-danger">
+                <i class="fa-solid fa-eraser"></i>Eliminar
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                <i class="fa-solid fa-eye-slash"></i>Cancelar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Actualizar Lugar -->
+    <div
+      class="modal fade"
+      id="ActualizarLugar"
+      tabindex="-1"
+      aria-labelledby="ActualizarLugar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background-color: blueviolet; color: aliceblue"
+          >
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar Lugar</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  name="nombre"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="direccion"
+                  name="direccion"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="capacidad" class="form-label">Capacidad:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="capacidad"
+                  name="capacidad"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-success">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4JQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

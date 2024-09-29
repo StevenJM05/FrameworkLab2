@@ -1,0 +1,159 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Sep 28, 2024, 8:55:41 PM
+    Author     : steve
+*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f5f7;
+    margin: 0;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: white;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #6b7a99;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f1f5f9;
+    color: #333;
+    border-radius: 8px;
+}
+
+.sidebar ul li.active a {
+    background-color: #6366f1;
+    color: white;
+    border-radius: 8px;
+}
+
+.sidebar ul li .icon {
+    margin-right: 10px;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 250px; 
+    padding: 40px;
+    width: 100%;
+}
+
+/* Header and buttons */
+.table-container {
+    width: 80%;
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-bottom: 1px solid #e1e8f3;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.header .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter-button {
+    background-color: #f1f5f9;
+    color: #333;
+}
+
+.new-ticket-button {
+    background-color: #6366f1;
+    color: white;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f8f9fb;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    font-size: 14px;
+    color: #6b7a99;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e1e8f3;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    font-size: 14px;
+    color: #555b6e;
+}
+
+main {
+    margin-left: 250px; 
+    flex-grow: 1;
+    padding: 20px;
+    overflow: auto;
+}
+

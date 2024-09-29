@@ -1,31 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Title</title>
-</head>
-<body>
+  <head>
+    <title>Calendario de Eventos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">EXAMEN FRAMEWORKS</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
-                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarID">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="index.html">Volver al index</a>
-                        <a class="nav-link active" aria-current="page" href="ControllerLugares">Ir a lugares</a>
-                        <a class="nav-link active" aria-current="page" href="ControllerEvento">Ir a eventos</a>
-                        
-                    </div>
-                </div>
-            </div>
-        </nav>
+    <!-- Bootstrap CSS v5.3.2 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-</body>
+    <!-- FullCalendar CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+      rel="stylesheet"
+    />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <h2>Laboratorio Framework 2</h2>
+      <ul>
+        <li class="active">
+          <a href="index.html"><i class='bx bxs-home icon'></i> Inicio</a>
+        </li>
+        <li>
+          <a href="eventos.html"><i class='bx bx-category-alt icon'></i> Eventos</a>
+        </li>
+        <li>
+          <a href="lugares.html"><i class='bx bxs-flag-alt icon'></i>Lugares</a>
+        </li>
+      </ul>
+    </div>
+    <main>
+      <div class="container mt-5" >
+        <div id="calendar"></div>
+      </div>
+    </main>
+
+    <footer>
+      <!-- place footer here -->
+    </footer>
+
+    <!-- Bootstrap JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          initialDate: '2024-10-01',
+          navLinks: true, 
+          editable: true,
+          dayMaxEvents: true, 
+          events: [
+            {
+              title: 'Evento 1',
+              start: '2024-10-01'
+            },
+            {
+              title: 'Evento 2',
+              start: '2024-10-05',
+              end: '2024-10-07'
+            },
+            {
+              title: 'Evento 3',
+              start: '2024-10-09T12:30:00'
+            }
+          ]
+        });
+
+        calendar.render();
+      });
+    </script>
+  </body>
 </html>
