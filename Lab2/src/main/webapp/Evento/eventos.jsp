@@ -123,7 +123,7 @@
                             ></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="ControllerEvento" method="post">
                             <div class="mb-3">
                                 <label for="fecha" class="form-label">Fecha:</label>
                                 <input
@@ -133,13 +133,16 @@
                                     name="fecha"
                                     />
                             </div>
+                            <input type="hidden" name="action" value="agregar">
                             <div class="mb-3">
-                                <label for="lugar" class="form-label"> Lugar: </label>
-                                <select class="form-select">
-                                    <option>Chalchuapa</option>
+                                <label for="lugar" class="form-label">Lugar:</label>
+                                <select class="form-select" name="lugar" id="lugar">
+                                    <c:forEach items="${lugares}" var="lugar">
+                                        <option value="${lugar.idLugar}">${lugar.nombreLugar}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
-                        </form>
+                        
                     </div>
                     <div class="modal-footer">
                         <button
@@ -149,9 +152,10 @@
                             >
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">Agregar</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>           
                     </div>
                 </div>
+            </form>
             </div>
         </div>
 

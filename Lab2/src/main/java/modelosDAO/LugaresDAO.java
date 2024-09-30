@@ -47,7 +47,7 @@ public class LugaresDAO {
                 lista.add(lugares);
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
         }
         return lista;

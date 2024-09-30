@@ -12,11 +12,11 @@ import java.sql.Date;
  */
 public class Evento {
     private int idEvento;
-    private Date fechaEvento;
+    private String fechaEvento;
     private int lugarId;
     private String nombreLugar;
 
-    public Evento(int idEvento, Date fechaEvento, int lugarId, String nombreLugar) {
+    public Evento(int idEvento, String fechaEvento, int lugarId, String nombreLugar) {
         this.idEvento = idEvento;
         this.fechaEvento = fechaEvento;
         this.lugarId = lugarId;
@@ -44,11 +44,11 @@ public class Evento {
         this.idEvento = idEvento;
     }
 
-    public Date getFechaEvento() {
+    public String getFechaEvento() {
         return fechaEvento;
     }
 
-    public void setFechaEvento(Date fechaEvento) {
+    public void setFechaEvento(String fechaEvento) {
         this.fechaEvento = fechaEvento;
     }
 

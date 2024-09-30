@@ -12,9 +12,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelos.Evento;
+import modelos.Lugares;
 import modelosDAO.EventoDAO;
+import modelosDAO.LugaresDAO;
 
 /**
  *
@@ -61,17 +68,28 @@ public class ControllerEvento extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-            RequestDispatcher dispacher = null;
+        try {
+            RequestDispatcher dispatcher = null;
             EventoDAO eventodao = new EventoDAO();
-            //Listar Eventos
+            LugaresDAO lugardao = new LugaresDAO();
+
+            // Listar Eventos
             List<Evento> eventos = eventodao.listar();
             request.setAttribute("eventos", eventos);
-            dispacher = request.getRequestDispatcher("Evento/eventos.jsp");
-            dispacher.forward(request, response);
-        }catch(ClassNotFoundException e){
-            
+
+            // Listar Lugares
+            List<Lugares> lugares = lugardao.Listar();
+            request.setAttribute("lugares", lugares);
+
+            // Verifica el tamaño de la lista de lugares
+            System.out.println("Cantidad de lugares: " + lugares.size()); // Imprimir el tamaño de la lista
+
+            dispatcher = request.getRequestDispatcher("Evento/eventos.jsp");
+            dispatcher.forward(request, response);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        
         
     }
 
@@ -87,6 +105,27 @@ public class ControllerEvento extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String action = request.getParameter("action");
+        if ("agregar".equals(action)) {
+            try {
+                String fecha = request.getParameter("fecha");
+                int idLugar = Integer.parseInt(request.getParameter("lugar"));
+
+                // Crear el objeto Evento
+                Evento nuevoEvento = new Evento();
+                nuevoEvento.setFechaEvento(fecha);
+                nuevoEvento.setLugarId(idLugar);
+
+                EventoDAO eventodao = new EventoDAO();
+                // Guardar el nuevo evento en la base de datos
+                eventodao.agregar(nuevoEvento);
+
+                // Redirigir después de agregar
+                response.sendRedirect("ControllerEvento");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ControllerEvento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**

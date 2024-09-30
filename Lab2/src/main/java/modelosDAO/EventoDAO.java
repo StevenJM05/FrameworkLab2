@@ -8,6 +8,7 @@ import db.cn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelos.Evento;
@@ -41,7 +42,7 @@ public class EventoDAO {
             while (rs.next()) {
                 Evento evento = new Evento();
                 evento.setIdEvento(rs.getInt("ID_Evento"));
-                evento.setFechaEvento(rs.getDate("Fecha_Evento"));
+                evento.setFechaEvento(rs.getString("Fecha_Evento"));
                 evento.setLugarId(rs.getInt("Lugar_ID"));
                 evento.setNombreLugar(rs.getString("Nombre_Lugar"));
                 eventos.add(evento);
@@ -53,7 +54,7 @@ public class EventoDAO {
     }
 
     public boolean agregar(Evento evento) {
-        String sql = "insert into Evento(Fecha_Evento, Lugar_ID) values(?, ?)";
+        String sql = "insert into eventos(Fecha_Evento, Lugar_ID) values(?, ?)";
         try {
             con = CN.getCon();
             ps = con.prepareStatement(sql);
@@ -62,7 +63,8 @@ public class EventoDAO {
             int filaAfectadas = ps.executeUpdate();
             return filaAfectadas > 0;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
             e.printStackTrace(); // Manejo básico de excepciones
             return false;
         } finally {
