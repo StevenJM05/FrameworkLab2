@@ -63,7 +63,7 @@ public class ControllerLugares extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = null;
         try {
             LugaresDAO lugaresDAO = new LugaresDAO();
@@ -71,12 +71,10 @@ public class ControllerLugares extends HttpServlet {
             request.setAttribute("consulta", consulta);
             dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
             dispatcher.forward(request, response);
-        }
-       catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     /**
@@ -91,9 +89,76 @@ public class ControllerLugares extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String action = request.getParameter("action");
+
+        if ("agregar".equals(action)) {
+            // Capturar los datos del formulario
+            String nombre = request.getParameter("nombre");
+            String direccion = request.getParameter("direccion");
+            int capacidad = Integer.parseInt(request.getParameter("capacidad"));
+
+            // Crear el objeto Lugares
+            Lugares lugar = new Lugares();
+            lugar.setNombreLugar(nombre);
+            lugar.setDireccion(direccion);
+            lugar.setCapacidad(capacidad);
+
+            try {
+                LugaresDAO dao = new LugaresDAO();
+                dao.agregar(lugar);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // Redirigir de vuelta a la lista de lugares
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
+            dispatcher.forward(request, response);
+        } else if ("actualizar".equals(action)) {
+            // Capturar los datos del formulario
+            int idLugar = Integer.parseInt(request.getParameter("idLugar"));
+            String nombre = request.getParameter("nombre");
+            String direccion = request.getParameter("direccion");
+            int capacidad = Integer.parseInt(request.getParameter("capacidad"));
+
+            // Crear el objeto Lugares
+            Lugares lugar = new Lugares();
+            lugar.setIdLugar(idLugar);
+            lugar.setNombreLugar(nombre);
+            lugar.setDireccion(direccion);
+            lugar.setCapacidad(capacidad);
+
+            try {
+                LugaresDAO dao = new LugaresDAO();
+                dao.actualizar(lugar);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // Redirigir de vuelta a la lista de lugares
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
+            dispatcher.forward(request, response);
+        } else if ("eliminar".equals(action)) {
+            // Capturar el ID del lugar a eliminar
+            int idLugar = Integer.parseInt(request.getParameter("idLugar"));
+            try {
+                LugaresDAO dao = new LugaresDAO();
+                if (dao.eliminar(idLugar)) {
+                    // Si se eliminó correctamente, redirigir a la lista de lugares
+                    request.setAttribute("mensaje", "Lugar eliminado exitosamente");
+                } else {
+                    request.setAttribute("mensaje", "Error al eliminar el lugar");
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // Redirigir de vuelta a la lista de lugares
+             RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
+             dispatcher.forward(request, response);
+        }
+
     }
 
-    
     /**
      * Returns a short description of the servlet.
      *

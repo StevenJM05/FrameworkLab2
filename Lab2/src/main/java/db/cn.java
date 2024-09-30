@@ -11,7 +11,7 @@ public class cn {
         try {
             // Cargar el driver MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab2", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab2?useSSL=false", "root", "");
             if (con != null) {
                 System.out.println("Conexión exitosa a la base de datos.");
             }

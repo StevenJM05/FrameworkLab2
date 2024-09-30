@@ -8,6 +8,7 @@ import db.cn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelos.Lugares;
@@ -92,12 +93,12 @@ public class LugaresDAO {
         }
     }
 
-    public boolean eliminar(Lugares lugares) {
+    public boolean eliminar(int id) {
         try {
             String sql = "delete from Lugares where ID_Lugar=?";
             con = CN.getCon();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, lugares.getIdLugar());
+            ps.setInt(1, id);
             int filaAfectadas = ps.executeUpdate();
             return filaAfectadas > 0;
         } catch (Exception e) {
