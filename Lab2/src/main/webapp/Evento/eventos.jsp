@@ -32,10 +32,10 @@
         <div class="sidebar">
             <h2>Laboratorio Framework 2</h2>
             <ul>
-                <li class="active">
+                <li >
                     <a href="index.html"><i class='bx bxs-home icon'></i> Inicio</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="ControllerEvento"><i class='bx bx-category-alt icon'></i> Eventos</a>
                 </li>
                 <li>
@@ -56,7 +56,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#agregarEvento"
                             >
-                            + Nuevo Ticket
+                            + Nuevo Evento
                         </button>
                     </div>
                 </div>

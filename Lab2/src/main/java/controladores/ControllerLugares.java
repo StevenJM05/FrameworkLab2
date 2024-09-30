@@ -88,82 +88,54 @@ public class ControllerLugares extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         String action = request.getParameter("action");
-
-        if ("agregar".equals(action)) {
-            // Capturar los datos del formulario
-            String nombre = request.getParameter("nombre");
-            String direccion = request.getParameter("direccion");
-            int capacidad = Integer.parseInt(request.getParameter("capacidad"));
-
-            // Crear el objeto Lugares
-            Lugares lugar = new Lugares();
-            lugar.setNombreLugar(nombre);
-            lugar.setDireccion(direccion);
-            lugar.setCapacidad(capacidad);
-
-            try {
-                LugaresDAO dao = new LugaresDAO();
+        LugaresDAO dao = null;
+        
+        try {
+            dao = new LugaresDAO();
+            
+            if ("agregar".equals(action)) {
+                Lugares lugar = new Lugares();
+                lugar.setNombreLugar(request.getParameter("nombre"));
+                lugar.setDireccion(request.getParameter("direccion"));
+                lugar.setCapacidad(Integer.parseInt(request.getParameter("capacidad")));
                 dao.agregar(lugar);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            // Redirigir de vuelta a la lista de lugares
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
-            dispatcher.forward(request, response);
-        } else if ("actualizar".equals(action)) {
-            // Capturar los datos del formulario
-            int idLugar = Integer.parseInt(request.getParameter("idLugar"));
-            String nombre = request.getParameter("nombre");
-            String direccion = request.getParameter("direccion");
-            int capacidad = Integer.parseInt(request.getParameter("capacidad"));
-
-            // Crear el objeto Lugares
-            Lugares lugar = new Lugares();
-            lugar.setIdLugar(idLugar);
-            lugar.setNombreLugar(nombre);
-            lugar.setDireccion(direccion);
-            lugar.setCapacidad(capacidad);
-
-            try {
-                LugaresDAO dao = new LugaresDAO();
+                
+            } else if ("actualizar".equals(action)) {
+                Lugares lugar = new Lugares();
+                lugar.setIdLugar(Integer.parseInt(request.getParameter("idLugar")));
+                lugar.setNombreLugar(request.getParameter("nombre"));
+                lugar.setDireccion(request.getParameter("direccion"));
+                lugar.setCapacidad(Integer.parseInt(request.getParameter("capacidad")));
                 dao.actualizar(lugar);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            // Redirigir de vuelta a la lista de lugares
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
-            dispatcher.forward(request, response);
-        } else if ("eliminar".equals(action)) {
-            // Capturar el ID del lugar a eliminar
-            int idLugar = Integer.parseInt(request.getParameter("idLugar"));
-            try {
-                LugaresDAO dao = new LugaresDAO();
+                
+            } else if ("eliminar".equals(action)) {
+                int idLugar = Integer.parseInt(request.getParameter("idLugar"));
                 if (dao.eliminar(idLugar)) {
-                    // Si se eliminó correctamente, redirigir a la lista de lugares
                     request.setAttribute("mensaje", "Lugar eliminado exitosamente");
                 } else {
                     request.setAttribute("mensaje", "Error al eliminar el lugar");
                 }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            // Redirigir de vuelta a la lista de lugares
-             RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
-             dispatcher.forward(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        recargar(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    private void recargar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            LugaresDAO dao = new LugaresDAO();
+            List<Lugares> consulta = dao.Listar();
+            request.setAttribute("consulta", consulta);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Lugares/verlugares.jsp");
+            dispatcher.forward(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ControllerLugares.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @Override
     public String getServletInfo() {
         return "Short description";
