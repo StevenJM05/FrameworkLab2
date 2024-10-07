@@ -132,6 +132,27 @@ public class ControllerEvento extends HttpServlet {
                 Logger.getLogger(ControllerEvento.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else if("ver".equals(action))
+        {
+         try {
+                RequestDispatcher dispatcher;
+                LugaresDAO lugardao = new LugaresDAO();
+                EventoDAO eventodao = new EventoDAO();
+                
+                int idLugar = Integer.parseInt(request.getParameter("idLugar"));
+                
+                List<Evento> eventos = eventodao.obtenerEventosPorLugar(idLugar);
+                request.setAttribute("eventos", eventos);
+
+                dispatcher = request.getRequestDispatcher("EventosxLugar.jsp");
+                dispatcher.forward(request, response);
+                
+            } catch (Exception e) {
+                Logger.getLogger(ControllerEvento.class.getName()).log(Level.SEVERE, null, e);
+                request.setAttribute("error", "Error al obtener eventos.");
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
+        }
     }
 
     /**
