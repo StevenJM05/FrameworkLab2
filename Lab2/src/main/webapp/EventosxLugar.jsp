@@ -1,63 +1,62 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="style.css" />
-        <title>Eventos por Lugar</title>
-    </head>
-    <body>
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>Laboratorio Framework 2</h2>
-            <ul>
-                <li>
-                    <a href="index.html"><i class='bx bxs-home icon'></i> Inicio</a>
-                </li>
-                <li>
-                    <a href="ControllerEvento"><i class='bx bx-category-alt icon'></i> Eventos</a>
-                </li>
-                <li class="active">
-                    <a href="ControllerLugares"><i class='bx bxs-flag-alt icon'></i> Lugares</a>
-                </li>
-            </ul>
-        </div>
+    <%@page contentType="text/html" pageEncoding="UTF-8" %>
+        <!DOCTYPE html>
+        <html lang="es">
 
-        <!-- Main content -->
-        <div class="main-content">
-            <div class="container mt-5">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            <link rel="stylesheet" href="style.css" />
+            <title>Eventos por Lugar</title>
+        </head>
 
-                <div class="header">
-                    <c:if test="${not empty eventos && eventos.size() > 0}">
-                        <h2>Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
-                    </c:if>                    <div class="buttons">
-                        <button class="filter-button">Filtros</button>
-                        <button
-                            class="new-ticket-button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#agregarEvento"
-                            >
-                            + Nuevo Evento
-                        </button>
+        <body>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h2>Laboratorio Framework 2</h2>
+                <ul>
+                    <li>
+                        <a href="index.html"><i class='bx bxs-home icon'></i> Inicio</a>
+                    </li>
+                    <li>
+                        <a href="ControllerEvento"><i class='bx bx-category-alt icon'></i> Eventos</a>
+                    </li>
+                    <li class="active">
+                        <a href="ControllerLugares"><i class='bx bxs-flag-alt icon'></i> Lugares</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main content -->
+            <div class="main-content">
+                <div class="container mt-5">
+
+                    <div class="header">
+                        <c:if test="${not empty eventos && eventos.size() > 0}">
+                            <h2>Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
+                        </c:if>
+                        <div class="buttons">
+                            <button class="filter-button">Filtros</button>
+                            <button class="new-ticket-button" data-bs-toggle="modal" data-bs-target="#agregarEvento">
+                                + Nuevo Evento
+                            </button>
+                        </div>
                     </div>
-                </div>
 
 
 
 
-                <!-- Mensaje de alerta -->
-                <c:if test="${not empty mensaje}">
-                    <div class="alert alert-info">${mensaje}</div>
-                </c:if>
+                    <!-- Mensaje de alerta -->
+                    <c:if test="${not empty mensaje}">
+                        <div class="alert alert-info">${mensaje}</div>
+                    </c:if>
 
-                <!-- Tabla de eventos -->
-                <div class="table-container">
-                    <table class="table table-striped">
+                    <!-- Tabla de eventos -->
+
+                    <table>
                         <thead>
                             <tr>
                                 <th>ID Evento</th>
@@ -72,89 +71,94 @@
                                     <td>${evento.idEvento}</td>
                                     <td>${evento.fechaEvento}</td>
                                     <td>${evento.nombreLugar}</td>
-
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
-                </div>
 
-                <!-- Mensaje cuando no hay eventos -->
-                <c:if test="${empty eventos}">
-                    <div class="alert alert-warning">No hay eventos disponibles para este lugar.</div>
-                </c:if>
+
+                    <!-- Mensaje cuando no hay eventos -->
+                    <c:if test="${empty eventos}">
+                        <div class="alert alert-warning">No hay eventos disponibles para este lugar.</div>
+                    </c:if>
+                </div>
             </div>
-        </div>
-        
-        
-        
-        <div
-            class="modal fade"
-            id="agregarEvento"
-            tabindex="-1"
-            aria-labelledby="agregarEvento"
-            aria-hidden="true"
-            >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div
-                        class="modal-header"
-                        style="background-color: blueviolet; color: aliceblue"
-                        >
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Evento</h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                            ></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="ControllerEvento" method="post">
-                            <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha:</label>
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    id="fecha"
-                                    name="fecha"
-                                    />
+
+            <!-- Modal de Actualización -->
+            <div class="modal fade" id="ActualizarLugar" tabindex="-1" aria-labelledby="ActualizarLugar"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="ControllerLugares" method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Actualizar Lugar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
-                            <input type="hidden" name="action" value="agregar">
-                            <div class="mb-3">
-                                <label for="lugar" class="form-label">Lugar:</label>
-                                <select class="form-select" name="lugar" id="lugar">
-                                    <c:forEach items="${lugares}" var="lugar">
-                                        <option value="${lugar.idLugar}">${lugar.nombreLugar}</option>
-                                    </c:forEach>
-                                        
-                                         <c:if test="${not empty eventos && eventos.size() > 0}">
-                        <h2>Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
-                    </c:if>    
-                                </select>
+                            <div class="modal-body">
+                                <input type="hidden" id="action" name="action" value="actualizar" />
+                                <input type="hidden" id="idLugar" name="idLugar" value="">
+                                <div class="mb-3">
+                                    <label for="nombreLugar" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombreLugar" name="nombre" value=""
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="direccionLugar" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="direccionLugar" name="direccion"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="capacidad" class="form-label">Capacidad</label>
+                                    <input type="number" class="form-control" id="capacidadLugar" name="capacidad"
+                                        required>
+                                </div>
                             </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                            >
-                            Close
-                        </button>
-                        <button type="submit" class="btn btn-primary">Agregar</button>           
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
             </div>
-        </div>
-        
-        
-        
 
-        <!-- Scripts de Bootstrap y Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    </body>
-</html>
+
+            <div class="modal fade" id="agregarEvento" tabindex="-1" aria-labelledby="agregarEvento" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: blueviolet; color: aliceblue">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Evento en <c:if test="${not empty eventos && eventos.size() > 0}">
+                            ${eventos[0].nombreLugar}
+                        </c:if></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="ControllerEvento" method="post">
+                                <div class="mb-3">
+                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha" />
+                                </div>
+                                <input type="hidden" name="action" value="agregar">
+                                <input type="hidden" name="idLugar" value="${idLugar}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+            <!-- Scripts de Bootstrap y Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+        </body>
+
+        </html>

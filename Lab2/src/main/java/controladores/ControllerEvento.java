@@ -146,7 +146,7 @@ public class ControllerEvento extends HttpServlet {
 
                 List<Lugares> lugares = lugardao.Listar();
                 request.setAttribute("lugares", lugares);
-
+                request.setAttribute("idLugar", idLugar);
                 dispatcher = request.getRequestDispatcher("EventosxLugar.jsp");
                 dispatcher.forward(request, response);
                 
