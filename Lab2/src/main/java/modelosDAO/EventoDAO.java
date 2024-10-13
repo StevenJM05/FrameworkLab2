@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import modelos.Evento;
 
 /**
@@ -48,6 +49,31 @@ public class EventoDAO {
                 eventos.add(evento);
             }
         } catch (Exception e) {
+
+        }
+        return eventos;
+    }
+
+    public List<Evento> obtenerEventosPorLugar(int idLugar) {
+        List<Evento> eventos = new ArrayList<>();
+        String sql = "SELECT e.ID_Evento, e.Fecha_Evento, l.Nombre_Lugar "
+                + "FROM Eventos e "
+                + "JOIN Lugares l ON e.Lugar_ID = l.ID_Lugar "
+                + "WHERE l.ID_Lugar = ?";
+        try {
+            con = CN.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idLugar);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Evento evento = new Evento();
+                evento.setIdEvento(rs.getInt("ID_Evento"));
+                evento.setFechaEvento(rs.getString("Fecha_Evento"));
+                evento.setNombreLugar(rs.getString("Nombre_Lugar"));
+                eventos.add(evento);
+            }
+        } catch (SQLException e) {
+        } finally {
 
         }
         return eventos;

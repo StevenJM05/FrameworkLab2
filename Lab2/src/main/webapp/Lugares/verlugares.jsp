@@ -46,8 +46,8 @@
                 <div class="header">
                     <h2>Lugares</h2>
                     <c:if test="${not empty mensaje}">
-    <div class="alert alert-info">${mensaje}</div>
-</c:if>
+                        <div class="alert alert-info">${mensaje}</div>
+                    </c:if>
 
                     <div class="buttons">
                         <button class="filter-button">Filtros</button>
@@ -86,6 +86,15 @@
                                             onclick="llenarEliminar('${consulta.idLugar}')">
                                         <i class="fa-regular fa-circle-xmark mx-1"></i>
                                     </button>
+                                    <form action="ControllerEvento" method="post">
+                                        <input type="hidden" name="idLugar" value="${consulta.idLugar}">
+                                          <input type="hidden" id="action" name="action" value="ver" />
+                                        <button class="btn btn-info" name="ver" value="ver">
+                                            <i class="fa-solid fa-eye mx-1"></i>
+                                        </button>
+                                        
+                                        
+                                    </form>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -201,63 +210,63 @@
             </div>
         </div>
 
-            <!-- Modal Eliminar Lugar -->
-            <div class="modal fade" id="eliminarLugar" tabindex="-1" aria-labelledby="eliminarLugar" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header" style="background-color: blueviolet; color: aliceblue">
-                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Lugar</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="form-label">¿Desea eliminar el lugar?</label>
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <form action="ControllerLugares" method="post">
-                                <input type="hidden" name="action" value="eliminar">
-                                <input type="hidden" id="idEliminarLugar" name="idLugar" value="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fa-solid fa-eraser"></i>Eliminar
-                                </button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    <i class="fa-solid fa-eye-slash"></i>Cancelar
-                                </button>
-                            </form>
-                        </div>
+        <!-- Modal Eliminar Lugar -->
+        <div class="modal fade" id="eliminarLugar" tabindex="-1" aria-labelledby="eliminarLugar" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: blueviolet; color: aliceblue">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Lugar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="form-label">¿Desea eliminar el lugar?</label>
+
+                    </div>
+                    <div class="modal-footer">
+                        <form action="ControllerLugares" method="post">
+                            <input type="hidden" name="action" value="eliminar">
+                            <input type="hidden" id="idEliminarLugar" name="idLugar" value="">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa-solid fa-eraser"></i>Eliminar
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-eye-slash"></i>Cancelar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 
 
-            <script>
-                function llenarFormulario(idLugar, nombre, direccion, capacidad) {
-                    // Asignar los valores a los campos del formulario
-                    document.getElementById("idLugar").value = idLugar;
-                    document.getElementById("nombreLugar").value = nombre;
-                    document.getElementById("direccionLugar").value = direccion;
-                    document.getElementById("capacidadLugar").value = capacidad;
-                }
-                function llenarEliminar(idEliminar) {
+        <script>
+            function llenarFormulario(idLugar, nombre, direccion, capacidad) {
+                // Asignar los valores a los campos del formulario
+                document.getElementById("idLugar").value = idLugar;
+                document.getElementById("nombreLugar").value = nombre;
+                document.getElementById("direccionLugar").value = direccion;
+                document.getElementById("capacidadLugar").value = capacidad;
+            }
+            function llenarEliminar(idEliminar) {
                 document.getElementById("idEliminarLugar").value = idEliminar;
-    
-}
+
+            }
 
 
-            </script>
+        </script>
 
-            <script
-                src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4JQkC+hVqc2pM8ODewa9r"
-                crossorigin="anonymous"
-            ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4JQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
 
-            <script
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-                integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-                crossorigin="anonymous"
-            ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>
