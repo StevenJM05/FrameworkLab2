@@ -14,6 +14,10 @@
                 integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
                 crossorigin="anonymous" referrerpolicy="no-referrer" />
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            <!-- Enlazar Bootstrap Icons -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+                rel="stylesheet">
+
             <link rel="stylesheet" href="style.css" />
             <title>Lugares</title>
         </head>
@@ -75,8 +79,9 @@
                                                     data-bs-target="#ActualizarLugar"
                                                     style="background-color: blueviolet;"
                                                     onclick="llenarFormulario('${consulta.idLugar}', '${consulta.nombreLugar}', '${consulta.direccion}', ${consulta.capacidad})">
-                                                    <i class="fa-solid fa-pen-to-square mx-1" style="color: aliceblue;"></i>
-                                                    
+                                                    <i class="fa-solid fa-pen-to-square mx-1"
+                                                        style="color: aliceblue;"></i>
+
                                                 </button>
                                             </div>
                                             <div class="col-md-3">
@@ -110,7 +115,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form action="ControllerLugares" method="post">
-                            <div class="modal-header">
+                            <div class="modal-header" style="background-color: blueviolet; color: aliceblue;">
                                 <h5 class="modal-title" id="exampleModalLabel">Actualizar Lugar</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
@@ -144,8 +149,9 @@
             </div>
 
             <!-- Modal Agregar Lugar -->
+            <!-- Modal Agregar Lugar -->
             <div class="modal fade" id="agregarLugar" tabindex="-1" aria-labelledby="agregarLugar" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: blueviolet; color: aliceblue">
                             <h5 class="modal-title" id="exampleModalLabel">Agregar Lugar</h5>
@@ -153,33 +159,56 @@
                         </div>
                         <div class="modal-body">
                             <form action="ControllerLugares" method="post">
-                                <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" required />
+                                <div class="row align-items-center mb-2">
+                                    <!-- Imagen -->
+                                    <div class="col-md-6 d-flex justify-content-center">
+                                        <img src="img/Lugar.jpg" class="img-fluid rounded" alt="Lugar"
+                                            style="max-height: 250px;">
+                                    </div>
+                                    <!-- Formulario -->
+                                    <div class="col-md-6">
+                                        <!-- Input Nombre -->
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">Nombre:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <!-- Input Dirección -->
+                                        <div class="mb-3">
+                                            <label for="direccion" class="form-label">Dirección:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                                                <input type="text" class="form-control" id="direccion" name="direccion"
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <!-- Input Capacidad -->
+                                        <div class="mb-3">
+                                            <label for="capacidad" class="form-label">Capacidad:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-people"></i></span>
+                                                <input type="number" class="form-control" id="capacidad"
+                                                    name="capacidad" required />
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="action" value="agregar" />
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="direccion" class="form-label">Dirección:</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="capacidad" class="form-label">Capacidad:</label>
-                                    <input type="number" class="form-control" id="capacidad" name="capacidad"
-                                        required />
-                                </div>
-                                <input type="hidden" name="action" value="agregar" />
-
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                        Close
-                                    </button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Agregar</button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
+
+
 
             <!-- Modal Eliminar Lugar -->
             <div class="modal fade" id="eliminarLugar" tabindex="-1" aria-labelledby="eliminarLugar" aria-hidden="true">

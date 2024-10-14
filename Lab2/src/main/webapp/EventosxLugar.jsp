@@ -35,9 +35,9 @@
                 <div class="container mt-5">
                     <div class="table-container">
 
-                        <div class="header">
+                        <div class="header" style="background-color: blueviolet;">
                             <c:if test="${not empty eventos && eventos.size() > 0}">
-                                <h2>Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
+                                <h2 style="color: aliceblue;">Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
                             </c:if>
                             <div class="buttons">
                                 <button class="filter-button">Filtros</button>
