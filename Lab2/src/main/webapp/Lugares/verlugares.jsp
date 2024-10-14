@@ -71,10 +71,12 @@
                                     <td>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <button class="btn btn-success" data-bs-toggle="modal"
+                                                <button class="btn btn" data-bs-toggle="modal"
                                                     data-bs-target="#ActualizarLugar"
+                                                    style="background-color: blueviolet;"
                                                     onclick="llenarFormulario('${consulta.idLugar}', '${consulta.nombreLugar}', '${consulta.direccion}', ${consulta.capacidad})">
-                                                    <i class="fa-solid fa-pen-to-square mx-1"></i>
+                                                    <i class="fa-solid fa-pen-to-square mx-1" style="color: aliceblue;"></i>
+                                                    
                                                 </button>
                                             </div>
                                             <div class="col-md-3">

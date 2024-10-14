@@ -33,104 +33,69 @@
             <!-- Main content -->
             <div class="main-content">
                 <div class="container mt-5">
+                    <div class="table-container">
 
-                    <div class="header">
-                        <c:if test="${not empty eventos && eventos.size() > 0}">
-                            <h2>Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
-                        </c:if>
-                        <div class="buttons">
-                            <button class="filter-button">Filtros</button>
-                            <button class="new-ticket-button" data-bs-toggle="modal" data-bs-target="#agregarEvento">
-                                + Nuevo Evento
-                            </button>
+                        <div class="header">
+                            <c:if test="${not empty eventos && eventos.size() > 0}">
+                                <h2>Eventos en el Lugar: ${eventos[0].nombreLugar}</h2>
+                            </c:if>
+                            <div class="buttons">
+                                <button class="filter-button">Filtros</button>
+                                <button class="new-ticket-button" data-bs-toggle="modal"
+                                    data-bs-target="#agregarEvento">
+                                    + Nuevo Evento
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
 
 
 
-                    <!-- Mensaje de alerta -->
-                    <c:if test="${not empty mensaje}">
-                        <div class="alert alert-info">${mensaje}</div>
-                    </c:if>
+                        <!-- Mensaje de alerta -->
+                        <c:if test="${not empty mensaje}">
+                            <div class="alert alert-info">${mensaje}</div>
+                        </c:if>
 
-                    <!-- Tabla de eventos -->
+                        <!-- Tabla de eventos -->
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID Evento</th>
-                                <th>Fecha del Evento</th>
-                                <th>Lugar del evento</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${eventos}" var="evento">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>${evento.idEvento}</td>
-                                    <td>${evento.fechaEvento}</td>
-                                    <td>${evento.nombreLugar}</td>
+                                    <th>#</th>
+                                    <th>Fecha del Evento</th>
+                                    <th>Lugar del evento</th>
+
                                 </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${eventos}" var="evento">
+                                    <tr>
+                                        <td>${evento.idEvento}</td>
+                                        <td>${evento.fechaEvento}</td>
+                                        <td>${evento.nombreLugar}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
 
 
-                    <!-- Mensaje cuando no hay eventos -->
-                    <c:if test="${empty eventos}">
-                        <div class="alert alert-warning">No hay eventos disponibles para este lugar.</div>
-                    </c:if>
-                </div>
-            </div>
-
-            <!-- Modal de Actualización -->
-            <div class="modal fade" id="ActualizarLugar" tabindex="-1" aria-labelledby="ActualizarLugar"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="ControllerLugares" method="post">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Actualizar Lugar</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="hidden" id="action" name="action" value="actualizar" />
-                                <input type="hidden" id="idLugar" name="idLugar" value="">
-                                <div class="mb-3">
-                                    <label for="nombreLugar" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreLugar" name="nombre" value=""
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="direccionLugar" class="form-label">Dirección</label>
-                                    <input type="text" class="form-control" id="direccionLugar" name="direccion"
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="capacidad" class="form-label">Capacidad</label>
-                                    <input type="number" class="form-control" id="capacidadLugar" name="capacidad"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Actualizar</button>
-                            </div>
-                        </form>
+                        <!-- Mensaje cuando no hay eventos -->
+                        <c:if test="${empty eventos}">
+                            <div class="alert alert-warning">No hay eventos disponibles para este lugar.</div>
+                        </c:if>
                     </div>
                 </div>
             </div>
-
 
             <div class="modal fade" id="agregarEvento" tabindex="-1" aria-labelledby="agregarEvento" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: blueviolet; color: aliceblue">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Evento en <c:if test="${not empty eventos && eventos.size() > 0}">
-                            ${eventos[0].nombreLugar}
-                        </c:if></h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Evento en <c:if
+                                    test="${not empty eventos && eventos.size() > 0}">
+                                    ${eventos[0].nombreLugar}
+                                </c:if>
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -140,7 +105,7 @@
                                     <input type="date" class="form-control" id="fecha" name="fecha" />
                                 </div>
                                 <input type="hidden" name="action" value="agregar">
-                                <input type="hidden" name="idLugar" value="${idLugar}">
+                                <input type="hidden" name="lugar" value="${idLugar}">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
